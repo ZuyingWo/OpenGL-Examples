@@ -23,5 +23,8 @@ works as intended these commands should build the examples:
     mkdir build
     cd build
     cmake ../
+    # Do this for fix compile error
+    python2.7 ../glxw/glxw_gen.py --api khr --output ./glxw/
+    python2.7 ../glxw/glxw_gen.py --api egl --output ./glxw/
     make
 ```
