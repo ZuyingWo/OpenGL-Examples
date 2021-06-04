@@ -62,7 +62,9 @@ int main() {
     }
 
     // select opengl version
+#ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -76,6 +78,13 @@ int main() {
     }
     
     glfwMakeContextCurrent(window);
+
+    // Bind ESC key press to close the application
+    glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+        if (action == GLFW_PRESS and key == GLFW_KEY_ESCAPE) {
+            glfwSetWindowShouldClose(window, true);
+        };
+    });
 
     if(glxwInit()) {
         std::cerr << "failed to init GL3W" << std::endl;
@@ -123,7 +132,7 @@ int main() {
         "layout(location = 0) out vec4 FragColor;\n"
         "void main() {\n"
         "   float s = 0.2*(1/(1+15.*dot(txcoord, txcoord))-1/16.);\n"
-        "   FragColor = s*vec4(0.3,0.3,1.0,1);\n"
+        "   FragColor = s*vec4(0.325f, 0.749f, 0.925f, 1.0f);\n"
         "}\n";
    
     // program and shader handles

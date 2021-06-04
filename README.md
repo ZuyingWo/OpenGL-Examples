@@ -1,7 +1,7 @@
 OpenGL Example Collection
 -------------------------
 
-The purpose of thise example collection is to provide short and self
+The purpose of these example collection is to provide short and self
 contained code that showcases OpenGL api functionality/features.
 The examples have no dependencies on any custom framework or basecode
 except for "canonical" libraries such as glfw, gl3w and glm. All the
@@ -15,16 +15,13 @@ to optimize rendering a Cube (Minecraftlike) Cave. At the same time
 the goal is to keep the examples short and simple enough to not lose
 the focus.
 
-The build system is cmake (only tested on my linux box...). If everything
-works as intended these commands should build the examples:
+The build system is cmake (tested on Linux and MacOS).
+If everything works as intended these commands should build the examples:
+
 ```
-    git submodule init
-    git submodule update
+    git clone --recursive https://github.com/ZuyingWo/OpenGL-Examples.git
     mkdir build
     cd build
-    cmake ../
-    # Do this for fix compile error
-    python2.7 ../glxw/glxw_gen.py --api khr --output ./glxw/
-    python2.7 ../glxw/glxw_gen.py --api egl --output ./glxw/
+    cmake ..
     make
 ```

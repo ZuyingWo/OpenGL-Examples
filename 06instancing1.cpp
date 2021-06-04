@@ -58,7 +58,9 @@ int main() {
     }
 
     // select opengl version
+#ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -72,6 +74,13 @@ int main() {
     }
     
     glfwMakeContextCurrent(window);
+
+    // Bind ESC key press to close the application
+    glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+        if (action == GLFW_PRESS and key == GLFW_KEY_ESCAPE) {
+            glfwSetWindowShouldClose(window, true);
+        };
+    });
 
     if(glxwInit()) {
         std::cerr << "failed to init GL3W" << std::endl;
@@ -162,40 +171,40 @@ int main() {
     GLfloat vertexData[] = {
     //  X     Y     Z           R     G     B
     // face 0:
-       1.0f, 1.0f, 1.0f,       1.0f, 0.0f, 0.0f, // vertex 0
-      -1.0f, 1.0f, 1.0f,       1.0f, 0.0f, 0.0f, // vertex 1
-       1.0f,-1.0f, 1.0f,       1.0f, 0.0f, 0.0f, // vertex 2
-      -1.0f,-1.0f, 1.0f,       1.0f, 0.0f, 0.0f, // vertex 3
- 
+       1.0f, 1.0f, 1.0f,       0.067f, 0.455f, 0.729f, // vertex 0
+      -1.0f, 1.0f, 1.0f,       0.067f, 0.455f, 0.729f, // vertex 1
+       1.0f,-1.0f, 1.0f,       0.067f, 0.455f, 0.729f, // vertex 2
+      -1.0f,-1.0f, 1.0f,       0.067f, 0.455f, 0.729f, // vertex 3
+
     // face 1:
-       1.0f, 1.0f, 1.0f,       0.0f, 1.0f, 0.0f, // vertex 0
-       1.0f,-1.0f, 1.0f,       0.0f, 1.0f, 0.0f, // vertex 1
-       1.0f, 1.0f,-1.0f,       0.0f, 1.0f, 0.0f, // vertex 2
-       1.0f,-1.0f,-1.0f,       0.0f, 1.0f, 0.0f, // vertex 3
- 
+       1.0f, 1.0f, 1.0f,       0.843f, 0.329f, 0.149f, // vertex 0
+       1.0f,-1.0f, 1.0f,       0.843f, 0.329f, 0.149f, // vertex 1
+       1.0f, 1.0f,-1.0f,       0.843f, 0.329f, 0.149f, // vertex 2
+       1.0f,-1.0f,-1.0f,       0.843f, 0.329f, 0.149f, // vertex 3
+
     // face 2:
-       1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 1.0f, // vertex 0
-       1.0f, 1.0f,-1.0f,       0.0f, 0.0f, 1.0f, // vertex 1
-      -1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 1.0f, // vertex 2
-      -1.0f, 1.0f,-1.0f,       0.0f, 0.0f, 1.0f, // vertex 3
+       1.0f, 1.0f, 1.0f,       0.925f, 0.69f, 0.208f, // vertex 0
+       1.0f, 1.0f,-1.0f,       0.925f, 0.69f, 0.208f, // vertex 1
+      -1.0f, 1.0f, 1.0f,       0.925f, 0.69f, 0.208f, // vertex 2
+      -1.0f, 1.0f,-1.0f,       0.925f, 0.69f, 0.208f, // vertex 3
       
     // face 3:
-       1.0f, 1.0f,-1.0f,       1.0f, 1.0f, 0.0f, // vertex 0
-       1.0f,-1.0f,-1.0f,       1.0f, 1.0f, 0.0f, // vertex 1
-      -1.0f, 1.0f,-1.0f,       1.0f, 1.0f, 0.0f, // vertex 2
-      -1.0f,-1.0f,-1.0f,       1.0f, 1.0f, 0.0f, // vertex 3
- 
+       1.0f, 1.0f,-1.0f,       0.49f, 0.2f, 0.549f, // vertex 0
+       1.0f,-1.0f,-1.0f,       0.49f, 0.2f, 0.549f, // vertex 1
+      -1.0f, 1.0f,-1.0f,       0.49f, 0.2f, 0.549f, // vertex 2
+      -1.0f,-1.0f,-1.0f,       0.49f, 0.2f, 0.549f, // vertex 3
+
     // face 4:
-      -1.0f, 1.0f, 1.0f,       0.0f, 1.0f, 1.0f, // vertex 0
-      -1.0f, 1.0f,-1.0f,       0.0f, 1.0f, 1.0f, // vertex 1
-      -1.0f,-1.0f, 1.0f,       0.0f, 1.0f, 1.0f, // vertex 2
-      -1.0f,-1.0f,-1.0f,       0.0f, 1.0f, 1.0f, // vertex 3
- 
+      -1.0f, 1.0f, 1.0f,       0.471f, 0.671f, 0.227f, // vertex 0
+      -1.0f, 1.0f,-1.0f,       0.471f, 0.671f, 0.227f, // vertex 1
+      -1.0f,-1.0f, 1.0f,       0.471f, 0.671f, 0.227f, // vertex 2
+      -1.0f,-1.0f,-1.0f,       0.471f, 0.671f, 0.227f, // vertex 3
+
     // face 5:
-       1.0f,-1.0f, 1.0f,       1.0f, 0.0f, 1.0f, // vertex 0
-      -1.0f,-1.0f, 1.0f,       1.0f, 0.0f, 1.0f, // vertex 1
-       1.0f,-1.0f,-1.0f,       1.0f, 0.0f, 1.0f, // vertex 2
-      -1.0f,-1.0f,-1.0f,       1.0f, 0.0f, 1.0f, // vertex 3
+       1.0f,-1.0f, 1.0f,       0.325f, 0.749f, 0.925f, // vertex 0
+      -1.0f,-1.0f, 1.0f,       0.325f, 0.749f, 0.925f, // vertex 1
+       1.0f,-1.0f,-1.0f,       0.325f, 0.749f, 0.925f, // vertex 2
+      -1.0f,-1.0f,-1.0f,       0.325f, 0.749f, 0.925f, // vertex 3
     }; // 6 faces with 4 vertices with 6 components (floats)
  
     // fill with data
