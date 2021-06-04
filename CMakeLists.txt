@@ -7,6 +7,8 @@ mark_as_advanced(BUILD_OGL43)
 
 find_package(OpenGL REQUIRED)
 
+set(CMAKE_C_FLAGS "-Wno-deprecated-declarations") # disable deprecation warnings
+
 add_subdirectory(glfw)
 add_subdirectory(glxw)
 
