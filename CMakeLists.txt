@@ -10,6 +10,14 @@ find_package(OpenGL REQUIRED)
 add_subdirectory(glfw)
 add_subdirectory(glxw)
 
+# Download KHR and EGL header files for glxw
+# This implements fix by ZuyingWo, issue #12
+# Only checked on mac (hence an if-guard)
+if (APPLE)
+    execute_process( COMMAND bash -c "python2.7 ../glxw/glxw_gen.py --api khr --output ./glxw/" )
+    execute_process( COMMAND bash -c "python2.7 ../glxw/glxw_gen.py --api egl --output ./glxw/" )
+endif (APPLE)
+
 include_directories(glfw/include)
 include_directories(glm)
 include_directories(${CMAKE_BINARY_DIR}/glxw/include)
